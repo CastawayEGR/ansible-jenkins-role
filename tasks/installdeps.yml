@@ -1,0 +1,17 @@
+---
+# Install dependencies for jenkins
+
+- name: Setup jenkins repo
+  yum_repository:
+    name: Jenkins-stable
+    description: Jenkins stable repo
+    baseurl: http://pkg.jenkins.io/redhat-stable
+    gpgkey: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+    enabled: true
+
+- name: Install dependencies and jenkins on host.
+  yum:
+    name:
+      - java-1.8.0-openjdk-devel
+      - jenkins
+    state: present

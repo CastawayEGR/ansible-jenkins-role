@@ -1,0 +1,5 @@
+---
+# tasks file for ansible-jenkins-roles
+
+- include: installdeps.yml
+- include: jenkins.yml

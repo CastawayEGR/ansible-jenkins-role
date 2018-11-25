@@ -1,0 +1,19 @@
+---
+# Setup jenkins and start
+
+- name: Enable and start Jenkins.
+  service: name=jenkins enabled=true state=started
+  when: ansible_connection != "docker"
+
+- name: Enable and start firewalld.
+  service: name=firewalld enabled=true state=started
+  when: ansible_connection != "docker"
+
+- name: Allow jenkins server port 8080.
+  firewalld:
+    port: 8080/tcp
+    zone: public
+    immediate: true
+    permanent: true
+    state: enabled
+  when: ansible_connection != "docker"
